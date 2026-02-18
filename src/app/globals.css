@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F5F0E8;
+  --foreground: #F5F5F5;
+  --gold: #D4A843;
+  --gold-light: #F0D78C;
+  --gold-dark: #A07D2E;
+  --surface: #1A1A1A;
+  --surface-light: #252525;
+  --muted: #78909c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Hide Spline watermarks */
+[data-spline-watermark],
+a[href*="spline.design"],
+a[href*="spline"],
+div[style*="spline"]>a,
+canvas+div>a,
+canvas~a,
+canvas+a,
+canvas~div:has(a[href*="spline"]) {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+::selection {
+  background: var(--gold);
+  color: #000;
+}
+
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes pulseBox {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes barGrow {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes badgeFloat {
+
+  0%,
+  100% {
+    transform: rotateX(12deg);
+    opacity: 0.85;
+  }
+
+  50% {
+    transform: rotateX(14deg) translateY(-1px);
+    opacity: 1;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    top: 0;
+  }
+
+  100% {
+    top: 100%;
+  }
+}
