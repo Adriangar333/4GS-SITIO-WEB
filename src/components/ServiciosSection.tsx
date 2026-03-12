@@ -90,56 +90,60 @@ export default function ServiciosSection() {
             {/* Subtle top divider */}
             <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: '80%', maxWidth: '800px', height: '1px', background: 'linear-gradient(90deg, transparent, #D4A84330, transparent)', zIndex: 1 }} />
 
-            <div className="w-full max-w-6xl mx-auto px-6 md:px-12 py-20 md:py-28 relative z-10">
+            <div className="w-full max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 relative z-10 flex flex-col items-center">
                 {/* Section header — BIGGER */}
-                <div className="text-center mb-12 md:mb-16">
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', marginBottom: '20px' }}>
-                        <div style={{ width: '50px', height: '1px', background: 'linear-gradient(90deg, transparent, #D4A843)' }} />
-                        <span style={{ color: '#D4A843', fontSize: '11px', letterSpacing: '0.35em', fontWeight: 700 }}>NUESTROS SERVICIOS</span>
-                        <div style={{ width: '50px', height: '1px', background: 'linear-gradient(90deg, #D4A843, transparent)' }} />
+                <div className="text-center mb-12 md:mb-20 w-full">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', marginBottom: '24px' }}>
+                        <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, transparent, #D4A843)' }} className="w-10 md:w-16" />
+                        <span style={{ color: '#D4A843', fontSize: '10px', letterSpacing: '0.4em', fontWeight: 700 }}>NUESTROS SERVICIOS</span>
+                        <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, #D4A843, transparent)' }} className="w-10 md:w-16" />
                     </div>
                     <h2 style={{
                         color: '#1a1a2e',
-                        fontSize: 'clamp(32px, 5.5vw, 56px)',
+                        fontSize: 'clamp(34px, 6vw, 64px)',
                         fontWeight: 800,
-                        letterSpacing: '-0.03em',
-                        lineHeight: 1.1,
-                        marginBottom: '16px',
+                        letterSpacing: '-0.04em',
+                        lineHeight: 1.05,
+                        marginBottom: '20px',
                     }}>
                         Soluciones que{' '}
                         <span style={{
                             color: '#D4A843',
                             textDecoration: 'underline',
-                            textDecorationColor: '#D4A84340',
-                            textUnderlineOffset: '6px',
-                            textDecorationThickness: '3px',
+                            textDecorationColor: '#D4A84330',
+                            textUnderlineOffset: '8px',
+                            textDecorationThickness: '4px',
                         }}>transforman</span>
                     </h2>
-                    <p style={{ color: '#6b6155', fontSize: '15px', maxWidth: '560px', margin: '0 auto', lineHeight: 1.8, fontWeight: 400 }}>
-                        Automatización, inteligencia artificial y desarrollo a medida para empresas que quieren escalar.
+                    <p style={{ color: '#6b6155', fontSize: 'clamp(14px, 1.8vw, 17px)', maxWidth: '640px', margin: '0 auto', lineHeight: 1.8, fontWeight: 400 }}>
+                        Automatización, inteligencia artificial y desarrollo a medida para empresas que quieren escalar con tecnología de punta.
                     </p>
                 </div>
 
-                {/* Service grid — bigger cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {/* Service grid — more compact cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 w-full">
                     {SERVICES.map((svc) => (
                         <div
                             key={svc.name}
+                            className="group"
                             style={{
                                 background: '#FFFDF8',
-                                borderRadius: '18px',
+                                borderRadius: '20px',
                                 border: '1px solid #e8e0d0',
-                                padding: '32px 28px 28px',
-                                transition: 'all 0.4s cubic-bezier(0.22,1,0.36,1)',
+                                padding: 'clamp(20px, 3vw, 32px) 24px',
+                                transition: 'all 0.5s cubic-bezier(0.2, 1, 0.3, 1)',
                                 position: 'relative',
                                 overflow: 'hidden',
-                                boxShadow: '0 2px 16px rgba(0,0,0,0.04)',
+                                boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                height: '100%',
                             }}
                             onMouseEnter={e => {
                                 const el = e.currentTarget as HTMLElement;
                                 el.style.border = `1px solid ${svc.color}50`;
-                                el.style.boxShadow = `0 12px 40px ${svc.color}12, 0 4px 16px rgba(0,0,0,0.08)`;
-                                el.style.transform = 'translateY(-6px)';
+                                el.style.boxShadow = `0 12px 32px ${svc.color}10, 0 4px 12px rgba(0,0,0,0.05)`;
+                                el.style.transform = 'translateY(-4px)';
                             }}
                             onMouseLeave={e => {
                                 const el = e.currentTarget as HTMLElement;
@@ -155,30 +159,30 @@ export default function ServiciosSection() {
                             }} />
 
                             {/* Icon + Title block */}
-                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
                                 {/* Icon */}
                                 <div style={{
-                                    width: '56px', height: '56px', borderRadius: '14px',
+                                    width: '48px', height: '48px', borderRadius: '12px',
                                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                    background: `${svc.color}12`,
-                                    border: `1.5px solid ${svc.color}30`,
-                                    boxShadow: `0 4px 16px ${svc.color}10`,
+                                    background: `${svc.color}10`,
+                                    border: `1.5px solid ${svc.color}25`,
+                                    boxShadow: `0 4px 12px ${svc.color}08`,
                                 }}>
-                                    {renderIcon(svc.symbol, svc.color, 28)}
+                                    {renderIcon(svc.symbol, svc.color, 24)}
                                 </div>
                                 {/* Title */}
                                 <div style={{ textAlign: 'center' }}>
                                     <div style={{
                                         color: '#1a1a2e',
-                                        fontSize: '18px',
+                                        fontSize: '16px',
                                         fontWeight: 800,
                                         letterSpacing: '-0.01em',
-                                        marginBottom: '4px',
+                                        marginBottom: '2px',
                                     }}>{svc.name}</div>
                                     <div style={{
                                         color: svc.color,
-                                        fontSize: '10px',
-                                        letterSpacing: '0.22em',
+                                        fontSize: '9px',
+                                        letterSpacing: '0.2em',
                                         fontWeight: 700,
                                     }}>{svc.sub}</div>
                                 </div>
@@ -187,23 +191,23 @@ export default function ServiciosSection() {
                             {/* Description */}
                             <p style={{
                                 color: '#5a5a6a',
-                                fontSize: '13px',
-                                lineHeight: 1.8,
-                                marginBottom: '20px',
+                                fontSize: '12.5px',
+                                lineHeight: 1.7,
+                                marginBottom: '16px',
                                 textAlign: 'center',
                             }}>{svc.desc}</p>
 
                             {/* Feature tags */}
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center' }}>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', justifyContent: 'center', marginTop: 'auto' }}>
                                 {svc.features.map((f) => (
                                     <span key={f} style={{
-                                        fontSize: '10px',
+                                        fontSize: '9px',
                                         color: '#5a5a6a',
-                                        padding: '5px 12px',
-                                        background: `${svc.color}08`,
-                                        border: `1px solid ${svc.color}18`,
-                                        borderRadius: '8px',
-                                        letterSpacing: '0.04em',
+                                        padding: '4px 10px',
+                                        background: `${svc.color}06`,
+                                        border: `1px solid ${svc.color}15`,
+                                        borderRadius: '6px',
+                                        letterSpacing: '0.03em',
                                         fontWeight: 600,
                                     }}>
                                         {f}

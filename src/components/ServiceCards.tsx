@@ -446,7 +446,7 @@ export default function ServiceCards() {
             </div>
 
             {/* Mobile: horizontal bottom row */}
-            <div className="flex md:hidden absolute bottom-12 left-0 right-0 justify-center gap-2 px-3" style={{ zIndex: 5 }}>
+            <div className="flex md:hidden absolute bottom-20 left-0 right-0 justify-center gap-2 px-3" style={{ zIndex: 5 }}>
                 {SERVICES.map((svc, i) => (
                     <MobileCard key={svc.name} svc={svc} selected={selected === i} onSelect={() => handleSelect(i)} />
                 ))}
@@ -454,7 +454,7 @@ export default function ServiceCards() {
 
             {/* Mobile expanded overlay */}
             {selected !== null && (
-                <div className="flex md:hidden absolute bottom-28 left-3 right-3 pointer-events-auto" style={{ zIndex: 6 }}>
+                <div className="flex md:hidden absolute bottom-36 left-3 right-3 pointer-events-auto" style={{ zIndex: 6 }}>
                     <MobileExpandedCard svc={SERVICES[selected]} index={selected} onClose={() => setSelected(null)} />
                 </div>
             )}
