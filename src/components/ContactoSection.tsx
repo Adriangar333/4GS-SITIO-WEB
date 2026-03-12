@@ -64,7 +64,7 @@ export default function ContactoSection() {
         border: '1px solid #e8e0d0',
         borderRadius: '10px',
         color: '#1a1a2e',
-        fontSize: '13px',
+        fontSize: '14px',
         fontFamily: "'Geist Mono', 'IBM Plex Mono', monospace",
         outline: 'none',
         transition: 'border-color 0.3s, box-shadow 0.3s',
@@ -112,7 +112,7 @@ export default function ContactoSection() {
                 >
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', marginBottom: '24px' }}>
                         <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, transparent, #D4A843)' }} className="w-10 md:w-16" />
-                        <span style={{ color: '#D4A843', fontSize: '10px', letterSpacing: '0.4em', fontWeight: 700 }}>CONTACTO</span>
+                        <span style={{ color: '#D4A843', fontSize: '11px', letterSpacing: '0.4em', fontWeight: 700 }}>CONTACTO</span>
                         <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, #D4A843, transparent)' }} className="w-10 md:w-16" />
                     </div>
                     <h2 style={{
@@ -170,10 +170,10 @@ export default function ContactoSection() {
                                     (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px rgba(0,0,0,0.03)';
                                 }}
                             >
-                                <div style={{ fontSize: '28px', marginBottom: '12px', opacity: 0.9 }}>{c.icon}</div>
-                                <div style={{ color: '#D4A843', fontSize: '8px', letterSpacing: '0.2em', fontWeight: 700, marginBottom: '8px' }}>{c.label.toUpperCase()}</div>
-                                <div style={{ color: '#1a1a2e', fontSize: '14px', fontWeight: 800, marginBottom: '4px', letterSpacing: '-0.01em' }}>{c.value}</div>
-                                <div style={{ color: '#8a7d6b', fontSize: '11px', fontWeight: 500 }}>{c.sub}</div>
+                                <div style={{ fontSize: '32px', marginBottom: '14px', opacity: 0.9 }}>{c.icon}</div>
+                                <div style={{ color: '#D4A843', fontSize: '10px', letterSpacing: '0.2em', fontWeight: 700, marginBottom: '8px' }}>{c.label.toUpperCase()}</div>
+                                <div style={{ color: '#1a1a2e', fontSize: '16px', fontWeight: 800, marginBottom: '4px', letterSpacing: '-0.01em' }}>{c.value}</div>
+                                <div style={{ color: '#8a7d6b', fontSize: '13px', fontWeight: 500 }}>{c.sub}</div>
                             </a>
                         </div>
                     ))}
@@ -206,7 +206,7 @@ export default function ContactoSection() {
                 >
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginBottom: '12px' }}>
                         <div style={{ width: '30px', height: '1px', background: 'linear-gradient(90deg, transparent, #D4A84330)' }} className="w-6 md:w-10" />
-                        <span style={{ color: '#D4A843', fontSize: '9px', letterSpacing: '0.3em', fontWeight: 700 }}>AGENDA UNA DEMO</span>
+                        <span style={{ color: '#D4A843', fontSize: '11px', letterSpacing: '0.3em', fontWeight: 700 }}>AGENDA UNA DEMO</span>
                         <div style={{ width: '30px', height: '1px', background: 'linear-gradient(90deg, #D4A84330, transparent)' }} className="w-6 md:w-10" />
                     </div>
                     <h3 style={{ color: '#1a1a2e', fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: '10px' }}>
@@ -234,7 +234,7 @@ export default function ContactoSection() {
                 >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
-                            <label style={{ color: '#6b6155', fontSize: '9px', letterSpacing: '0.15em', fontWeight: 600, display: 'block', marginBottom: '6px' }}>NOMBRE</label>
+                            <label style={{ color: '#6b6155', fontSize: '11px', letterSpacing: '0.15em', fontWeight: 600, display: 'block', marginBottom: '6px' }}>NOMBRE</label>
                             <input
                                 type="text"
                                 value={form.nombre}
@@ -247,7 +247,7 @@ export default function ContactoSection() {
                             />
                         </div>
                         <div>
-                            <label style={{ color: '#555', fontSize: '9px', letterSpacing: '0.15em', fontWeight: 600, display: 'block', marginBottom: '6px' }}>EMPRESA</label>
+                            <label style={{ color: '#555', fontSize: '11px', letterSpacing: '0.15em', fontWeight: 600, display: 'block', marginBottom: '6px' }}>EMPRESA</label>
                             <input
                                 type="text"
                                 value={form.empresa}
@@ -262,7 +262,7 @@ export default function ContactoSection() {
                     </div>
 
                     <div style={{ marginBottom: '16px' }}>
-                        <label style={{ color: '#555', fontSize: '9px', letterSpacing: '0.15em', fontWeight: 600, display: 'block', marginBottom: '6px' }}>EMAIL</label>
+                        <label style={{ color: '#555', fontSize: '11px', letterSpacing: '0.15em', fontWeight: 600, display: 'block', marginBottom: '6px' }}>EMAIL</label>
                         <input
                             type="email"
                             value={form.email}
@@ -276,7 +276,7 @@ export default function ContactoSection() {
                     </div>
 
                     <div style={{ marginBottom: '24px' }}>
-                        <label style={{ color: '#555', fontSize: '9px', letterSpacing: '0.15em', fontWeight: 600, display: 'block', marginBottom: '6px' }}>MENSAJE</label>
+                        <label style={{ color: '#555', fontSize: '11px', letterSpacing: '0.15em', fontWeight: 600, display: 'block', marginBottom: '6px' }}>MENSAJE</label>
                         <textarea
                             value={form.mensaje}
                             onChange={e => handleChange('mensaje', e.target.value)}
@@ -298,7 +298,7 @@ export default function ContactoSection() {
                             padding: '16px',
                             borderRadius: '10px',
                             border: 'none',
-                            fontSize: '11px',
+                            fontSize: '13px',
                             letterSpacing: '0.2em',
                             fontWeight: 800,
                             color: '#000',

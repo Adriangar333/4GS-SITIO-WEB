@@ -5,8 +5,21 @@ import { useRef, useEffect, useState } from 'react';
 export default function SplineBot() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [loading, setLoading] = useState(true);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        if (isMobile) {
+            setLoading(false);
+            return;
+        }
+
         const canvas = canvasRef.current;
         if (!canvas) return;
 
@@ -208,7 +221,7 @@ export default function SplineBot() {
         observer.observe(container, { childList: true, subtree: true });
 
         return () => observer.disconnect();
-    }, [loading]);
+    }, [loading, isMobile]);
 
     // ── Gyroscope → Mouse emulation for mobile ──
     useEffect(() => {
@@ -288,7 +301,28 @@ export default function SplineBot() {
                 gyroCleanup?.();
             };
         }
-    }, [loading]);
+    }, [loading, isMobile]);
+
+    if (isMobile) {
+        return (
+            <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ 
+                    width: '280px', 
+                    height: '280px', 
+                    borderRadius: '50%', 
+                    background: 'radial-gradient(circle, rgba(212,168,67,0.1) 0%, transparent 70%)',
+                    animation: 'pulse 4s infinite ease-in-out'
+                }} />
+                <style jsx>{`
+                    @keyframes pulse {
+                        0% { transform: scale(0.9); opacity: 0.5; }
+                        50% { transform: scale(1.1); opacity: 0.8; }
+                        100% { transform: scale(0.9); opacity: 0.5; }
+                    }
+                `}</style>
+            </div>
+        );
+    }
 
     return (
         <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden' }}>

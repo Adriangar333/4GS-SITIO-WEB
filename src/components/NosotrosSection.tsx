@@ -40,7 +40,7 @@ export default function NosotrosSection() {
                 <div className="text-center mb-12 md:mb-20 w-full">
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', marginBottom: '24px' }}>
                         <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, transparent, #D4A843)' }} className="w-10 md:w-16" />
-                        <span style={{ color: '#D4A843', fontSize: '10px', letterSpacing: '0.4em', fontWeight: 700 }}>NOSOTROS</span>
+                        <span style={{ color: '#D4A843', fontSize: '11px', letterSpacing: '0.4em', fontWeight: 700 }}>NOSOTROS</span>
                         <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, #D4A843, transparent)' }} className="w-10 md:w-16" />
                     </div>
                     <h2 style={{
@@ -69,10 +69,10 @@ export default function NosotrosSection() {
                             border: '1px solid #e8e0d0',
                             boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
                         }}>
-                            <div style={{ color: '#D4A843', fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1 }}>
+                            <div style={{ color: '#D4A843', fontSize: 'clamp(32px, 5vw, 44px)', fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1 }}>
                                 {s.value}
                             </div>
-                            <div style={{ color: '#6b6155', fontSize: '8px', letterSpacing: '0.12em', marginTop: '10px', fontWeight: 700 }}>
+                            <div style={{ color: '#6b6155', fontSize: '11px', letterSpacing: '0.12em', marginTop: '12px', fontWeight: 700 }}>
                                 {s.label.toUpperCase()}
                             </div>
                         </div>
@@ -105,9 +105,9 @@ export default function NosotrosSection() {
                                 (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 16px rgba(0,0,0,0.04)';
                             }}
                         >
-                            <div style={{ fontSize: '32px', marginBottom: '16px', opacity: 0.9 }}>{p.icon}</div>
-                            <div style={{ color: '#1a1a2e', fontSize: '16px', fontWeight: 800, marginBottom: '8px', letterSpacing: '-0.01em' }}>{p.title}</div>
-                            <p style={{ color: '#5a5a6a', fontSize: '12.5px', lineHeight: 1.7 }}>{p.desc}</p>
+                            <div style={{ fontSize: '36px', marginBottom: '18px', opacity: 0.9 }}>{p.icon}</div>
+                            <div style={{ color: '#1a1a2e', fontSize: '18px', fontWeight: 800, marginBottom: '10px', letterSpacing: '-0.01em' }}>{p.title}</div>
+                            <p style={{ color: '#5a5a6a', fontSize: '14px', lineHeight: 1.7 }}>{p.desc}</p>
                         </div>
                     ))}
                 </div>

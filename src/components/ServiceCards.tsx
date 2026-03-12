@@ -334,17 +334,18 @@ function MobileCard({ svc, selected, onSelect }: {
     return (
         <div
             onClick={onSelect}
+            className="flex-shrink-0"
             style={{
                 cursor: 'pointer',
                 pointerEvents: 'auto',
-                width: '50px',
-                height: '50px',
-                borderRadius: '12px',
+                width: '64px',
+                height: '64px',
+                borderRadius: '14px',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '3px',
+                gap: '4px',
                 background: selected ? `${svc.color}18` : '#F5F0E8',
                 backdropFilter: selected ? 'blur(20px)' : 'none',
                 border: `1px solid ${selected ? svc.color + '45' : '#e8e0d0'}`,
@@ -352,9 +353,9 @@ function MobileCard({ svc, selected, onSelect }: {
                 transition: 'all 0.3s',
             }}
         >
-            {renderIcon(svc.symbol, svc.color, 20)}
-            <span style={{ fontSize: '6px', color: selected ? svc.color : '#6b6155', letterSpacing: '0.06em', fontWeight: 700 }}>
-                {svc.name.slice(0, 5).toUpperCase()}
+            {renderIcon(svc.symbol, svc.color, 24)}
+            <span style={{ fontSize: '9px', color: selected ? svc.color : '#6b6155', letterSpacing: '0.04em', fontWeight: 700 }}>
+                {svc.name.slice(0, 7).toUpperCase()}
             </span>
         </div>
     );
@@ -386,37 +387,37 @@ function MobileExpandedCard({ svc, index, onClose }: {
                 background: `linear-gradient(90deg, transparent, ${svc.color}60, transparent)`,
             }} />
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '14px 18px', justifyContent: 'center', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px 20px', justifyContent: 'center', flexDirection: 'column' }}>
                 <div style={{
-                    width: '36px', height: '36px', borderRadius: '10px', display: 'flex',
+                    width: '42px', height: '42px', borderRadius: '12px', display: 'flex',
                     alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                     background: `${svc.color}0c`, border: `1px solid ${svc.color}35`,
                 }}>
-                    {renderIcon(svc.symbol, svc.color, 20)}
+                    {renderIcon(svc.symbol, svc.color, 24)}
                 </div>
                 <div style={{ minWidth: 0, flex: 1 }}>
-                    <div style={{ color: '#f0f0f0', fontWeight: 700, fontSize: '15px', textAlign: 'center' }}>{svc.name}</div>
-                    <div style={{ color: svc.color, fontSize: '8px', letterSpacing: '0.18em', fontWeight: 600, marginTop: '2px', textAlign: 'center' }}>{svc.sub.toUpperCase()}</div>
+                    <div style={{ color: '#f0f0f0', fontWeight: 700, fontSize: '18px', textAlign: 'center' }}>{svc.name}</div>
+                    <div style={{ color: svc.color, fontSize: '10px', letterSpacing: '0.15em', fontWeight: 600, marginTop: '4px', textAlign: 'center' }}>{svc.sub.toUpperCase()}</div>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                    <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: svc.color, boxShadow: `0 0 8px ${svc.color}`, animation: 'pulse-dot 2s infinite' }} />
-                    <span style={{ fontSize: '7px', color: '#555', letterSpacing: '0.12em' }}>LIVE</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: svc.color, boxShadow: `0 0 8px ${svc.color}`, animation: 'pulse-dot 2s infinite' }} />
+                    <span style={{ fontSize: '9px', color: '#555', letterSpacing: '0.12em' }}>LIVE</span>
                 </div>
             </div>
 
             <div style={{ margin: '0 18px', height: '1px', background: `linear-gradient(90deg, transparent, ${svc.color}18, transparent)` }} />
 
-            <div style={{ padding: '14px 18px 18px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div style={{ marginBottom: '12px' }}>
+            <div style={{ padding: '16px 20px 24px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div style={{ marginBottom: '16px' }}>
                     <Sim c={svc.color} />
                 </div>
-                <p style={{ fontSize: '11px', color: '#777', lineHeight: 1.7, marginBottom: '12px' }}>{svc.desc}</p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', justifyContent: 'center' }}>
+                <p style={{ fontSize: '13px', color: '#888', lineHeight: 1.6, marginBottom: '16px' }}>{svc.desc}</p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center' }}>
                     {svc.features.map((f, i) => (
                         <span key={i} style={{
-                            fontSize: '9px', color: '#666', padding: '4px 10px',
+                            fontSize: '11px', color: '#777', padding: '6px 12px',
                             background: '#ffffff05', border: '1px solid #ffffff0a',
-                            borderRadius: '5px', letterSpacing: '0.04em',
+                            borderRadius: '6px', letterSpacing: '0.04em',
                         }}>
                             {f}
                         </span>
@@ -445,10 +446,15 @@ export default function ServiceCards() {
                 ))}
             </div>
 
-            {/* Mobile: horizontal bottom row */}
-            <div className="flex md:hidden absolute bottom-20 left-0 right-0 justify-center gap-2 px-3" style={{ zIndex: 5 }}>
+            {/* Mobile: horizontal bottom row with smooth scrolling */}
+            <div 
+                className="flex md:hidden absolute bottom-20 left-0 right-0 gap-3 px-6 overflow-x-auto pb-4" 
+                style={{ zIndex: 5, scrollSnapType: 'x mandatory', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
+            >
                 {SERVICES.map((svc, i) => (
-                    <MobileCard key={svc.name} svc={svc} selected={selected === i} onSelect={() => handleSelect(i)} />
+                    <div key={svc.name} style={{ scrollSnapAlign: 'center' }}>
+                        <MobileCard svc={svc} selected={selected === i} onSelect={() => handleSelect(i)} />
+                    </div>
                 ))}
             </div>
 
