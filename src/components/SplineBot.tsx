@@ -199,9 +199,12 @@ export default function SplineBot() {
             // This guarantees the 'Built with Spline' badge is hidden even if Spline changes its DOM structure.
             Array.from(container.children).forEach(child => {
                 if (child !== canvas) {
-                    (child as HTMLElement).style.display = 'none';
-                    (child as HTMLElement).style.opacity = '0';
-                    (child as HTMLElement).style.pointerEvents = 'none';
+                    const el = child as HTMLElement;
+                    el.style.setProperty('display', 'none', 'important');
+                    el.style.setProperty('opacity', '0', 'important');
+                    el.style.setProperty('pointer-events', 'none', 'important');
+                    el.style.setProperty('visibility', 'hidden', 'important');
+                    el.style.setProperty('z-index', '-9999', 'important');
                 }
             });
         };
@@ -311,6 +314,21 @@ export default function SplineBot() {
                 ref={canvasRef}
                 style={{ width: '100%', height: '100%', display: 'block', background: 'transparent' }}
             />
+            {/* Absolute CSS nuke for the watermark in case it tries to override JS */}
+            <style dangerouslySetInnerHTML={{__html: `
+                a[href*="spline.design"], 
+                #logo, 
+                div[style*="spline"],
+                a[href*="spline"] {
+                    display: none !important;
+                    opacity: 0 !important;
+                    pointer-events: none !important;
+                    visibility: hidden !important;
+                    z-index: -9999 !important;
+                    width: 0 !important;
+                    height: 0 !important;
+                }
+            `}} />
         </div>
     );
 }
