@@ -193,25 +193,17 @@ export default function SplineBot() {
         if (!container) return;
 
         const hideWatermark = () => {
-            // Find and hide any Spline watermark links
-            const links = container.querySelectorAll('a[href*="spline"]');
-            links.forEach(el => {
-                (el as HTMLElement).style.display = 'none';
-            });
-            // Also hide any sibling divs of the canvas that are watermark overlays
             const canvas = container.querySelector('canvas');
-            if (canvas?.parentElement) {
-                Array.from(canvas.parentElement.children).forEach(child => {
-                    if (child !== canvas && child.tagName !== 'DIV') return;
-                    if (child === canvas) return;
-                    const el = child as HTMLElement;
-                    // Check if it contains a link to spline
-                    const splineLink = el.querySelector?.('a[href*="spline"]') || el.querySelector?.('a');
-                    if (splineLink) {
-                        el.style.display = 'none';
-                    }
-                });
-            }
+            if (!canvas) return;
+            // Brutal approach: Hide all children of the container except the canvas itself.
+            // This guarantees the 'Built with Spline' badge is hidden even if Spline changes its DOM structure.
+            Array.from(container.children).forEach(child => {
+                if (child !== canvas) {
+                    (child as HTMLElement).style.display = 'none';
+                    (child as HTMLElement).style.opacity = '0';
+                    (child as HTMLElement).style.pointerEvents = 'none';
+                }
+            });
         };
 
         // Run immediately and also observe for dynamically injected watermark
@@ -305,8 +297,14 @@ export default function SplineBot() {
     return (
         <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden' }}>
             {loading && (
-                <div className="absolute inset-0 flex items-center justify-center" style={{ background: '#F5F0E8', zIndex: 2 }}>
-                    <div className="w-8 h-8 border-2 border-[#D4A843] border-t-transparent rounded-full animate-spin" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-5" style={{ background: '#F5F0E8', zIndex: 10 }}>
+                    <div className="w-10 h-10 border-4 border-[#D4A843] border-t-transparent rounded-full animate-spin" />
+                    <span style={{ 
+                        color: '#D4A843', fontSize: '11px', letterSpacing: '0.25em', fontWeight: 800,
+                        animation: 'pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1)' 
+                    }}>
+                        CARGANDO MODELO 3D...
+                    </span>
                 </div>
             )}
             <canvas

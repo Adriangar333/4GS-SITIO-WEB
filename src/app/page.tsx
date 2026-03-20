@@ -191,7 +191,7 @@ export default function Home() {
 
                 {/* Layer 1: Spline Bot with transparent background */}
                 <div className="absolute inset-0 z-1 pointer-events-auto flex items-center justify-center overflow-hidden">
-                    <div className="w-full h-full md:scale-[0.80] md:-translate-y-4 origin-center transition-transform duration-700">
+                    <div className="w-full h-full scale-[1.35] md:scale-[0.80] md:-translate-y-4 origin-center transition-transform duration-700">
                         <SplineBot />
                     </div>
                 </div>
