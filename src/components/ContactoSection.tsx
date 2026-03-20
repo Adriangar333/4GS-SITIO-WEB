@@ -107,7 +107,7 @@ export default function ContactoSection() {
                 {/* ── Section header ── */}
                 <div
                     ref={headerReveal.ref}
-                    className="text-center mb-12 md:mb-20 w-full"
+                    className="text-center mb-10 md:mb-14 w-full"
                     style={getRevealStyle(headerReveal.isVisible, 0, 'up')}
                 >
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', marginBottom: '24px' }}>
@@ -131,7 +131,7 @@ export default function ContactoSection() {
                 </div>
 
                 {/* ── Contact info cards ── */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-7 mb-12 md:mb-16 w-full">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-7 mb-10 md:mb-12 w-full">
                     {contactCards.map((c, i) => (
                         <div
                             key={c.label}
@@ -186,7 +186,7 @@ export default function ContactoSection() {
                         width: '100%',
                         display: 'flex',
                         justifyContent: 'center',
-                        marginBottom: '40px',
+                        marginBottom: '24px',
                         ...getRevealStyle(dividerReveal.isVisible, 0, 'scale'),
                     }}
                 >
@@ -201,7 +201,7 @@ export default function ContactoSection() {
                 {/* ── Agenda tu demo sub-header ── */}
                 <div
                     ref={demoHeaderReveal.ref}
-                    className="text-center mb-10 w-full"
+                    className="text-center mb-8 w-full"
                     style={getRevealStyle(demoHeaderReveal.isVisible, 0, 'up')}
                 >
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginBottom: '12px' }}>
@@ -227,7 +227,7 @@ export default function ContactoSection() {
                         WebkitBackdropFilter: 'blur(24px)',
                         borderRadius: '20px',
                         border: '1px solid #e8e0d0',
-                        padding: 'clamp(20px, 4vw, 36px)',
+                        padding: 'clamp(20px, 4vw, 32px)',
                         boxShadow: '0 8px 40px rgba(0,0,0,0.06)',
                         ...getRevealStyle(formReveal.isVisible, 0.2, 'up'),
                     }}

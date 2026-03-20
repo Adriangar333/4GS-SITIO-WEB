@@ -128,9 +128,9 @@ export default function ServiciosSection() {
                             className="group"
                             style={{
                                 background: '#FFFDF8',
-                                borderRadius: '20px',
+                                borderRadius: '16px',
                                 border: '1px solid #e8e0d0',
-                                padding: 'clamp(20px, 3vw, 32px) 24px',
+                                padding: 'clamp(16px, 2.5vw, 24px) 20px',
                                 transition: 'all 0.5s cubic-bezier(0.2, 1, 0.3, 1)',
                                 position: 'relative',
                                 overflow: 'hidden',
@@ -159,29 +159,29 @@ export default function ServiciosSection() {
                             }} />
 
                             {/* Icon + Title block */}
-                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
                                 {/* Icon */}
                                 <div style={{
-                                    width: '48px', height: '48px', borderRadius: '12px',
+                                    width: '40px', height: '40px', borderRadius: '10px',
                                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                                     background: `${svc.color}10`,
                                     border: `1.5px solid ${svc.color}25`,
                                     boxShadow: `0 4px 12px ${svc.color}08`,
                                 }}>
-                                    {renderIcon(svc.symbol, svc.color, 24)}
+                                    {renderIcon(svc.symbol, svc.color, 20)}
                                 </div>
                                 {/* Title */}
                                 <div style={{ textAlign: 'center' }}>
                                     <div style={{
                                         color: '#1a1a2e',
-                                        fontSize: '16px',
+                                        fontSize: '15px',
                                         fontWeight: 800,
                                         letterSpacing: '-0.01em',
                                         marginBottom: '2px',
                                     }}>{svc.name}</div>
                                     <div style={{
                                         color: svc.color,
-                                        fontSize: '9px',
+                                        fontSize: '8.5px',
                                         letterSpacing: '0.2em',
                                         fontWeight: 700,
                                     }}>{svc.sub}</div>
@@ -191,9 +191,9 @@ export default function ServiciosSection() {
                             {/* Description */}
                             <p style={{
                                 color: '#5a5a6a',
-                                fontSize: '12.5px',
-                                lineHeight: 1.7,
-                                marginBottom: '16px',
+                                fontSize: '12px',
+                                lineHeight: 1.6,
+                                marginBottom: '14px',
                                 textAlign: 'center',
                             }}>{svc.desc}</p>
 

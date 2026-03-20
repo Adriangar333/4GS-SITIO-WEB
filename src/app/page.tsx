@@ -29,10 +29,9 @@ function scrollTo(id: string) {
 
     let targetTop = absoluteElementTop - navHeight;
 
-    // If element is larger than available height, align to top with small buffer
-    if (elementHeight > availableHeight) {
-        targetTop += 20; // Small buffer to show the header clearly
-    } else {
+    // If element fits in available height, center it perfectly.
+    // Otherwise, we leave targetTop as absoluteElementTop - navHeight to align it perfectly below the navbar.
+    if (elementHeight <= availableHeight) {
         targetTop -= (availableHeight - elementHeight) / 2;
     }
 
