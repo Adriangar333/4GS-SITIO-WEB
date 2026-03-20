@@ -15,10 +15,6 @@ export default function SplineBot() {
     }, []);
 
     useEffect(() => {
-        if (isMobile) {
-            setLoading(false);
-            return;
-        }
 
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -42,9 +38,9 @@ export default function SplineBot() {
         };
 
         // Performance Optimization: Cap pixelRatio
-        // High DPI screens (e.g. Mac Retina with DPR 2 or 3) cause huge performance hits with WebGL
-        const maxPixelRatio = 1.5; // Good balance of quality vs performance
-        const pixelRatio = Math.min(window.devicePixelRatio, maxPixelRatio);
+        // High DPI screens cause massive perf hits. Cap to 1.5 on PC, 1.0 (or lower) on mobile
+        const maxPixelRatio = window.innerWidth < 768 ? 1.0 : 1.5;
+        const targetPixelRatio = Math.min(window.devicePixelRatio, maxPixelRatio);
 
         // Dynamic import the runtime
         import('@splinetool/runtime').then(({ Application }) => {
@@ -94,6 +90,9 @@ export default function SplineBot() {
                                 renderer._gl?.clearColor(0, 0, 0, 0);
                                 return origRender(...args);
                             };
+
+                            // Force our custom performance pixel ratio
+                            renderer.setPixelRatio(targetPixelRatio);
                         }
 
                         // Also null the scene background
@@ -301,28 +300,7 @@ export default function SplineBot() {
                 gyroCleanup?.();
             };
         }
-    }, [loading, isMobile]);
-
-    if (isMobile) {
-        return (
-            <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div style={{ 
-                    width: '280px', 
-                    height: '280px', 
-                    borderRadius: '50%', 
-                    background: 'radial-gradient(circle, rgba(212,168,67,0.1) 0%, transparent 70%)',
-                    animation: 'pulse 4s infinite ease-in-out'
-                }} />
-                <style jsx>{`
-                    @keyframes pulse {
-                        0% { transform: scale(0.9); opacity: 0.5; }
-                        50% { transform: scale(1.1); opacity: 0.8; }
-                        100% { transform: scale(0.9); opacity: 0.5; }
-                    }
-                `}</style>
-            </div>
-        );
-    }
+    }, [loading]);
 
     return (
         <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden' }}>

@@ -191,8 +191,10 @@ export default function Home() {
                 </div>
 
                 {/* Layer 1: Spline Bot with transparent background */}
-                <div className="absolute inset-0 z-1 pointer-events-auto">
-                    <SplineBot />
+                <div className="absolute inset-0 z-1 pointer-events-auto flex items-center justify-center overflow-hidden">
+                    <div className="w-full h-full md:scale-[0.80] md:-translate-y-4 origin-center transition-transform duration-700">
+                        <SplineBot />
+                    </div>
                 </div>
 
                 {/* Layer 2: Bottom gradient to cover Spline watermark */}
