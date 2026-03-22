@@ -193,26 +193,24 @@ export default function SplineBot() {
         const killer = setInterval(() => {
             if (!isActive) return;
             try {
-                // Sweep all likely watermark elements globally (in case Spline appends to document.body)
-                document.querySelectorAll('a, div, span, img, svg').forEach(el => {
+                // Sweep all likely watermark elements globally without touching parents
+                document.querySelectorAll('a, #logo, #spline-logo').forEach(el => {
                     const e = el as HTMLElement;
                     
                     // Kill links to spline
-                    if (e.tagName === 'A' && (e as HTMLAnchorElement).href?.includes('spline')) {
-                        e.style.setProperty('display', 'none', 'important');
-                        e.style.setProperty('opacity', '0', 'important');
-                    }
-                    
-                    // Kill elements with inner text mentioning Spline
-                    const text = e.innerText || e.textContent || '';
-                    if (text.includes('Built with Spline') || text.includes('spline.design')) {
-                        e.style.setProperty('display', 'none', 'important');
-                        e.style.setProperty('opacity', '0', 'important');
+                    if (e.tagName === 'A') {
+                        const href = (e as HTMLAnchorElement).href || '';
+                        if (href.includes('spline') || href.includes('splinetool')) {
+                            e.style.setProperty('display', 'none', 'important');
+                            e.style.setProperty('opacity', '0', 'important');
+                            e.style.setProperty('pointer-events', 'none', 'important');
+                        }
                     }
 
                     // Kill known Spline ID wrappers
                     if (e.id === 'logo' || e.id === 'spline-logo') {
                         e.style.setProperty('display', 'none', 'important');
+                        e.style.setProperty('pointer-events', 'none', 'important');
                     }
                 });
 
@@ -337,9 +335,9 @@ export default function SplineBot() {
             {/* Absolute CSS nuke for the watermark in case it tries to override JS */}
             <style dangerouslySetInnerHTML={{__html: `
                 a[href*="spline.design"], 
+                a[href*="splinetool"],
                 #logo, 
-                div[style*="spline"],
-                a[href*="spline"] {
+                #spline-logo {
                     display: none !important;
                     opacity: 0 !important;
                     pointer-events: none !important;
