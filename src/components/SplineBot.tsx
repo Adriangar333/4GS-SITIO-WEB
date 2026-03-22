@@ -187,35 +187,55 @@ export default function SplineBot() {
         };
     }, []);
 
-    // Remove Spline watermark via MutationObserver
+    // Sweeping interval to globally destroy the Spline watermark anywhere in the DOM
     useEffect(() => {
-        const container = canvasRef.current?.parentElement;
-        if (!container) return;
+        let isActive = true;
+        const killer = setInterval(() => {
+            if (!isActive) return;
+            try {
+                // Sweep all likely watermark elements globally (in case Spline appends to document.body)
+                document.querySelectorAll('a, div, span, img, svg').forEach(el => {
+                    const e = el as HTMLElement;
+                    
+                    // Kill links to spline
+                    if (e.tagName === 'A' && (e as HTMLAnchorElement).href?.includes('spline')) {
+                        e.style.setProperty('display', 'none', 'important');
+                        e.style.setProperty('opacity', '0', 'important');
+                    }
+                    
+                    // Kill elements with inner text mentioning Spline
+                    const text = e.innerText || e.textContent || '';
+                    if (text.includes('Built with Spline') || text.includes('spline.design')) {
+                        e.style.setProperty('display', 'none', 'important');
+                        e.style.setProperty('opacity', '0', 'important');
+                    }
 
-        const hideWatermark = () => {
-            const canvas = container.querySelector('canvas');
-            if (!canvas) return;
-            // Brutal approach: Hide all children of the container except the canvas itself.
-            // This guarantees the 'Built with Spline' badge is hidden even if Spline changes its DOM structure.
-            Array.from(container.children).forEach(child => {
-                if (child !== canvas) {
-                    const el = child as HTMLElement;
-                    el.style.setProperty('display', 'none', 'important');
-                    el.style.setProperty('opacity', '0', 'important');
-                    el.style.setProperty('pointer-events', 'none', 'important');
-                    el.style.setProperty('visibility', 'hidden', 'important');
-                    el.style.setProperty('z-index', '-9999', 'important');
-                }
-            });
+                    // Kill known Spline ID wrappers
+                    if (e.id === 'logo' || e.id === 'spline-logo') {
+                        e.style.setProperty('display', 'none', 'important');
+                    }
+                });
+
+                // Also check inside Shadow DOMs if any web components (like spline-viewer) were injected
+                const shadowHosts = document.querySelectorAll('*');
+                shadowHosts.forEach(host => {
+                    if (host.shadowRoot) {
+                        const logo = host.shadowRoot.querySelector('#logo, a[href*="spline"]');
+                        if (logo) {
+                            (logo as HTMLElement).style.setProperty('display', 'none', 'important');
+                        }
+                    }
+                });
+            } catch(e) {
+                // silent
+            }
+        }, 300); // Check aggressively
+
+        return () => {
+            isActive = false;
+            clearInterval(killer);
         };
-
-        // Run immediately and also observe for dynamically injected watermark
-        hideWatermark();
-        const observer = new MutationObserver(() => hideWatermark());
-        observer.observe(container, { childList: true, subtree: true });
-
-        return () => observer.disconnect();
-    }, [loading, isMobile]);
+    }, []);
 
     // ── Gyroscope → Mouse emulation for mobile ──
     useEffect(() => {
